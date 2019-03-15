@@ -9,6 +9,8 @@ public class Vkbln4ll
         System.out.println ("---------------------------------------------------");
         System.out.println ("!!!!! APPLICATION VKBLN4LL SUCCESSFUL STARTET !!!!!");
         System.out.println ("---------------------------------------------------");
+        System.out.println ("");
+        System.out.println ("Copyright (c) 2019 Kaye mGmbH");
 
         JOptionPane.showMessageDialog (null, "Applicatino successful started: Vkbln4ll\nCopyright (c) 2019 Kaye mGmbH");
     }
