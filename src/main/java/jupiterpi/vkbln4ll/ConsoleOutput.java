@@ -4,7 +4,7 @@ public class ConsoleOutput
 {
     private void o (String message)
     {
-        System.out.println (o);
+        System.out.println (message);
     }
 
     public void sendHello ()

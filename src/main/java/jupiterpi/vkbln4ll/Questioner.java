@@ -18,6 +18,12 @@ public class Questioner
     public Questioner (List<Vocabulary> vocabularies)
     {
         this.remainingVocabularies = vocabularies;
-        this.actualVocabulary = remainingVocabularies.get(random(remainingVocabularies.size()));
+        this.setNewActualVocabulary();
+    }
+
+    public void setNewActualVocabulary ()
+    {
+        askedVocabularies.add (actualVocabulary);
+        actualVocabulary = remainingVocabularies.get (random(remainingVocabularies.size()));
     }
 }

@@ -15,13 +15,6 @@ public class Vocabulary
         this.german = german;
     }
 
-    public Vocabulary (String latin, List<String> german, String fullGerman)
-    {
-        this.latin = latin;
-        this.german = german;
-        this.fullGerman = fullGerman;
-    }
-
     public String getLatin ()
     {
         return latin;
@@ -34,12 +27,12 @@ public class Vocabulary
 
     public String toString ()
     {
-        /*String germans = "";
+        String germans = "";
         for (int i = 0; i < german.size(); i++)
         {
             if (i == 0) germans = german.get(i);
             else germans += ", " + german.get(i);
-        }*/
-        return latin + " | " + fullGerman;
+        }
+        return latin + " | " + germans;
     }
 }
