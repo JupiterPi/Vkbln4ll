@@ -6,24 +6,10 @@ import java.util.Random;
 
 public class Questioner
 {
-    private List<Vocabulary> remainingVocabularies = new ArrayList<Vocabulary>();
-    private List<Vocabulary> askedVocabularies = new ArrayList<Vocabulary>();
-    private Vocabulary actualVocabulary;
-
-    public Questioner (List<Vocabulary> vocabularies)
+    private ConsoleOutput out = new ConsoleOutput();
+    
+    public void ask (Vocabulary vocabulary)
     {
-        this.remainingVocabularies = vocabularies;
-        this.setNewActualVocabulary();
-    }
-
-    private int random (int to)
-    {
-        return new Random().nextInt (to);
-    }
-
-    public void setNewActualVocabulary ()
-    {
-        askedVocabularies.add (actualVocabulary);
-        actualVocabulary = remainingVocabularies.get (random(remainingVocabularies.size()));
+        
     }
 }
