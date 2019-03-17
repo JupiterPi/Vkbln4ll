@@ -3,6 +3,7 @@ package jupiterpi.vkbln4ll;
 import jupiterpi.vkbln4ll.filetool.FileTool;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class VocabulariesReader
 {
@@ -19,7 +20,7 @@ public class VocabulariesReader
         List<Vocabulary> returning = new ArrayList<Vocabulary>();
         for (String line : vocabulariesStrings)
         {
-            String[] fields = line.split("|");
+            String[] fields = line.split(":");
             List<String> german = new ArrayList<String>();
             for (String ufield : fields[1].split(";"))
             {

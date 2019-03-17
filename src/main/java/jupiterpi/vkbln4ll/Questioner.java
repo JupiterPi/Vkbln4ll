@@ -10,15 +10,15 @@ public class Questioner
     private List<Vocabulary> askedVocabularies = new ArrayList<Vocabulary>();
     private Vocabulary actualVocabulary;
 
-    private int random (int to)
-    {
-        return new Random().nextInt (to);
-    }
-
     public Questioner (List<Vocabulary> vocabularies)
     {
         this.remainingVocabularies = vocabularies;
         this.setNewActualVocabulary();
+    }
+
+    private int random (int to)
+    {
+        return new Random().nextInt (to);
     }
 
     public void setNewActualVocabulary ()
