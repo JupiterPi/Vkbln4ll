@@ -17,17 +17,15 @@ public class Vkbln4ll
         out = new ConsoleOutput();
         reader = new VocabulariesReader (".\\vocabularies.txt");
         List<Vocabulary> importedVocabularies = reader.getVocabularies();
-        /* TEST */ out.printVocabularies (importedVocabularies);
-        for (int i = 0; i < importedVocabularies.size(); i++)
+        int importedVocabulariesSize = importedVocabularies.size();
+        for (int i = 0; i < importedVocabulariesSize; i++)
         {
             Random random = new Random();
-            Vocabulary vocabulary = importedVocabularies.get (random.nextInt (importedVocabularies.size()));
+            Vocabulary vocabulary = importedVocabularies.get (random.nextInt(importedVocabularies.size()));
             importedVocabularies.remove (vocabulary);
             vocabularies.add (vocabulary);
         }
 
         out.sendHello();
-
-        /* TEST */ out.printVocabularies (vocabularies);
     }
 }
