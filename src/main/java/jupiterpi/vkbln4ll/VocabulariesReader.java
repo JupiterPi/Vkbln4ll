@@ -14,7 +14,7 @@ public class VocabulariesReader
         vocabulariesFile = new FileTool (vocabulariesFileName);
     }
 
-    public List<Vocabulary> getVocabularies ()
+    public List<Vocabulary> getVocabularies () throws Exception
     {
         List<String> vocabulariesStrings = vocabulariesFile.getFile();
         List<Vocabulary> returning = new ArrayList<Vocabulary>();

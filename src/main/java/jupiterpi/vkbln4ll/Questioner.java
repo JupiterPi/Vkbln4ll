@@ -8,8 +8,19 @@ public class Questioner
 {
     private ConsoleOutput out = new ConsoleOutput();
     
-    public void ask (Vocabulary vocabulary)
+    public boolean askFromGerman (Vocabulary vocabulary)
     {
-        
+        String input = out.getInputFromGerman (vocabulary);
+        if (input.equals (vocabulary.getLatin()))
+        {
+            out.printRight();
+            return true;
+        }
+        else
+        {
+            out.printWrong (vocabulary);
+            return false;
+            /* TEST */ out.o (input + " --- " + vocabulary.getLatin());
+        }
     }
 }

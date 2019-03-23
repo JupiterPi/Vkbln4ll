@@ -9,13 +9,22 @@ public class Vkbln4ll
 {
     private static ConsoleOutput out;
     private static VocabulariesReader reader;
+    private static Questioner questioner;
 
     private static List<Vocabulary> vocabularies = new ArrayList<Vocabulary>();
 
-    public static void main (String[] args)
+    public static void main (String[] args) throws Exception
+    {
+        define();
+        out.sendHello();
+        out.printEndScore (askVocabularies());
+    }
+
+    private static void define () throws Exception
     {
         out = new ConsoleOutput();
         reader = new VocabulariesReader (".\\vocabularies.txt");
+        questioner = new Questioner();
         List<Vocabulary> importedVocabularies = reader.getVocabularies();
         int importedVocabulariesSize = importedVocabularies.size();
         for (int i = 0; i < importedVocabulariesSize; i++)
@@ -25,7 +34,15 @@ public class Vkbln4ll
             importedVocabularies.remove (vocabulary);
             vocabularies.add (vocabulary);
         }
+    }
 
-        out.sendHello();
+    private static int askVocabularies ()
+    {
+        int score = 0;
+        for (Vocabulary vocabulary : vocabularies)
+        {
+            if (questioner.askFromGerman (vocabulary)) score++;
+        }
+        return (score / vocabularies.size()) * 100;
     }
 }

@@ -9,10 +9,12 @@ public class Vocabulary
     private List<String> german = new ArrayList<String>();
     private String fullGerman;
     
-    public Vocabulary (String latin, List<String> german)
+    public Vocabulary (String latin, List<String> german) throws Exception
     {
-        this.latin = latin;
-        this.german = german;
+        if (!(latin.equals (""))) this.latin = latin;
+        else throw new Exception ("IMPORTFEHLER: Bitte gib eine lateinische Vokabel an!");
+        if (german.size() > 0) this.german = german;
+        else throw new Exception ("IMPORTFEHLER: Bitte gib eine Deutsche Übersetzung an!");
     }
 
     public String getLatin ()
@@ -23,6 +25,16 @@ public class Vocabulary
     public List<String> getGerman ()
     {
         return german;
+    }
+
+    public String getGermanToString ()
+    {
+        String returning = german.get(0);
+        if (german.size() > 1) for (int i = 1; i < german.size(); i++)
+        {
+            returning += ", " + german.get(i);
+        }
+        return returning;
     }
 
     public String toString ()
