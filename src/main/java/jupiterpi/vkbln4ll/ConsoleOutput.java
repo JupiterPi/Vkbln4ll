@@ -71,4 +71,14 @@ public class ConsoleOutput
         else if (score <= 100.0f) print ("Ich glaube, selbst ein Computer mit einer sehr, sehr großen Datenbank könnte das nicht viel besser!");
         print ("\n");
     }
+
+    public void printNewFileCreated ()
+    {
+        o ("Neue Vokabeldatei erstellt (vocabularies.txt)!");
+    }
+
+    public void printEmptyFile (String fileName)
+    {
+        o ("Vokabeldatei (" + fileName + ") ist leer. Bitte fülle sie doch!");
+    }
 }

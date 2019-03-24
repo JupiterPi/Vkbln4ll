@@ -16,16 +16,17 @@ public class Vkbln4ll
 
     public static void main (String[] args) throws Exception
     {
-        define();
+        define (args);
         out.sendHello();
         askVocabularies();
         out.printEndScore (finalScore);
     }
 
-    private static void define () throws Exception
+    private static void define (String[] args) throws Exception
     {
-        out = new ConsoleOutput();
-        reader = new VocabulariesReader (".\\vocabularies.txt");
+        out = new ConsoleOutput ();
+        if (args.length == 0) reader = new VocabulariesReader (".\\vocabularies.txt");
+        else reader = new VocabulariesReader (args[0]);
         questioner = new Questioner();
         List<Vocabulary> importedVocabularies = reader.getVocabularies();
         int importedVocabulariesSize = importedVocabularies.size();

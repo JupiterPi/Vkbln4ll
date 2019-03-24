@@ -1,17 +1,35 @@
 package jupiterpi.vkbln4ll;
 
-import jupiterpi.vkbln4ll.filetool.FileTool;
+import jupiterpi.vkbln4ll.filetool.*;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.io.IOException;
 
 public class VocabulariesReader
 {
-    private FileTool vocabulariesFile;
+    private FileToolForVkbln4ll vocabulariesFile;
+    private ConsoleOutput out = new ConsoleOutput();
 
-    public VocabulariesReader (String vocabulariesFileName)
+    public VocabulariesReader (String vocabulariesFileName) throws IOException
     {
-        vocabulariesFile = new FileTool (vocabulariesFileName);
+        try
+        {
+            vocabulariesFile = new FileToolForVkbln4ll (vocabulariesFileName);
+        }
+        catch (CreatedNewFileException x)
+        {
+            out.sendHello();
+            out.printNewFileCreated();
+            out.printEmptyFile (vocabulariesFileName);
+            System.exit(0);
+        }
+        catch (EmptyFileException x)
+        {
+            out.sendHello();
+            out.printEmptyFile (vocabulariesFileName);
+            System.exit(0);
+        }
     }
 
     public List<Vocabulary> getVocabularies () throws Exception
