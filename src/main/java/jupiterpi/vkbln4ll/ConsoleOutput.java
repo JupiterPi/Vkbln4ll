@@ -36,13 +36,13 @@ public class ConsoleOutput
     public String getInputFromLatin (Vocabulary vocabulary)
     {
         print (vocabulary.getLatin() + " | ");
-        return new Scanner (System.in).next();
+        return new Scanner (System.in).nextLine();
     }
 
     public String getInputFromGerman (Vocabulary vocabulary)
     {
         print (vocabulary.getGermanToString() + " | ");
-        return new Scanner (System.in).next();
+        return new Scanner (System.in).nextLine();
     }
 
     public void printRight ()

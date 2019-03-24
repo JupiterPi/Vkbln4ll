@@ -20,7 +20,6 @@ public class Questioner
         {
             out.printWrong (vocabulary);
             return false;
-            /* TEST */ out.o (input + " --- " + vocabulary.getLatin());
         }
     }
 }

@@ -11,13 +11,15 @@ public class Vkbln4ll
     private static VocabulariesReader reader;
     private static Questioner questioner;
 
+    private static int finalScore;
     private static List<Vocabulary> vocabularies = new ArrayList<Vocabulary>();
 
     public static void main (String[] args) throws Exception
     {
         define();
         out.sendHello();
-        out.printEndScore (askVocabularies());
+        askVocabularies();
+        out.printEndScore (finalScore);
     }
 
     private static void define () throws Exception
@@ -36,13 +38,13 @@ public class Vkbln4ll
         }
     }
 
-    private static int askVocabularies ()
+    private static void askVocabularies ()
     {
         int score = 0;
         for (Vocabulary vocabulary : vocabularies)
         {
             if (questioner.askFromGerman (vocabulary)) score++;
         }
-        return (score / vocabularies.size()) * 100;
+        finalScore = (score / vocabularies.size()) * 100;
     }
 }
