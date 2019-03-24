@@ -47,16 +47,28 @@ public class ConsoleOutput
 
     public void printRight ()
     {
-        o ("RICHTIG!");
+        o ("RICHTIG!\n");
     }
 
     public void printWrong (Vocabulary vocabulary)
     {
-        o ("FALSCH!\n" + vocabulary.toString());
+        o ("FALSCH!\n" + vocabulary.toString() + "\n");
     }
 
     public void printEndScore (int score)
     {
-        o ("--- Vokabelabfrage beendet ---\nDu hast " + score + "% richtig beantwortet. Herzlichen Glückwunsch!");
+        print ("--- Vokabelabfrage beendet ---\nDu hast " + (int) score + "% richtig beantwortet. ");
+        if (score == 0) print ("Wir wollen ja nicht unhöflich werden, aber das kann meine verstorbene Großmutter besser!");
+        else if (score < 10.0f) print ("Mal nur so unter uns, das kannst du aber besser!");
+        else if (score < 20.0f) print ("Üben solltest du noch!");
+        else if (score < 30.0f) print ("Gut, aber üben solltest du trotzdem noch!");
+        else if (score < 40.0f) print ("Das wird doch bestimmt eine gute Note!");
+        else if (score < 50.0f) print ("Das ist gut!");
+        else if (score < 60.0f) print ("Tja, fifty-fifty und aufwärts!");
+        else if (score < 70.0f) print ("Einen Schüler wie dich will man haben!");
+        else if (score < 80.0f) print ("Da kann man nur sagen: Sehr gut gemacht!");
+        else if (score < 90.0f) print ("Wir wollen ja nicht unhöflich werden, aber das kann meine verstorbene Großmutter um Längen schlechter!");
+        else if (score <= 100.0f) print ("Ich glaube, selbst ein Computer mit einer sehr, sehr großen Datenbank könnte das nicht viel besser!");
+        print ("\n");
     }
 }

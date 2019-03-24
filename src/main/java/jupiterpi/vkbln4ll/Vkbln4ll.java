@@ -40,11 +40,11 @@ public class Vkbln4ll
 
     private static void askVocabularies ()
     {
-        int score = 0;
+        float score = 0;
         for (Vocabulary vocabulary : vocabularies)
         {
             if (questioner.askFromGerman (vocabulary)) score++;
         }
-        finalScore = (score / vocabularies.size()) * 100;
+        finalScore = (int) ((score / (float) vocabularies.size()) * 100);
     }
 }
