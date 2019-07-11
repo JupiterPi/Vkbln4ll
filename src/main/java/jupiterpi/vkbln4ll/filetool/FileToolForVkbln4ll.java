@@ -38,6 +38,34 @@ public class FileToolForVkbln4ll
 
 		if (empty) throw new EmptyFileException();
 	}
+
+	public FileToolForVkbln4ll (String fileName, boolean simple) throws IOException, CreatedNewFileException, EmptyFileException
+	{
+		boolean e = !simple;
+		this.fileName = fileName;
+
+		File fileForCreating = new File (fileName);
+		if (e) if (fileForCreating.createNewFile()) throw new CreatedNewFileException();
+
+		BufferedReader Reader = new BufferedReader (new FileReader (fileName));
+		boolean fileEnd = false;
+
+		boolean empty = true;
+
+		while (!fileEnd)
+		{
+			String line = Reader.readLine();
+			if (line == null) fileEnd = true;
+			else
+			{
+				file.add (line);
+				empty = false;
+			}
+		}
+		Reader.close();
+
+		if (e) if (empty) throw new EmptyFileException();
+	}
 	
 	public ArrayList getFile ()
 	{
@@ -73,12 +101,24 @@ public class FileToolForVkbln4ll
 	
 	public void setLine (int line, String text)
 	{
-		file.set (line, text);
+		if (!(line < file.size())) file.add(new String());
+		file.set(line, text);
 	}
 	
 	public void writeToLine (int line, String text)
 	{
 		this.setLine (line, this.getLine (line) + text);
+	}
+
+	public boolean deleteLinesFrom (int line) {
+		try {
+			for (int i = line; i < file.size(); i++) {
+				file.remove(i);
+			}
+		} catch (ArrayIndexOutOfBoundsException x) {
+			return false;
+		}
+		return true;
 	}
 	
 	public void saveFile ()

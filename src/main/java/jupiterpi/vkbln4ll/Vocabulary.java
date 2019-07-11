@@ -8,6 +8,7 @@ public class Vocabulary
     private String latin;
     private List<String> german = new ArrayList<String>();
     private String fullGerman;
+    private String line;
     
     public Vocabulary (String latin, List<String> german) throws Exception
     {
@@ -15,6 +16,15 @@ public class Vocabulary
         else throw new Exception ("IMPORTFEHLER: Bitte gib eine lateinische Vokabel an!");
         if (german.size() > 0) this.german = german;
         else throw new Exception ("IMPORTFEHLER: Bitte gib eine Deutsche Übersetzung an!");
+    }
+
+    public Vocabulary (String latin, List<String> german, String line) throws Exception
+    {
+        if (!(latin.equals (""))) this.latin = latin;
+        else throw new Exception ("IMPORTFEHLER: Bitte gib eine lateinische Vokabel an!");
+        if (german.size() > 0) this.german = german;
+        else throw new Exception ("IMPORTFEHLER: Bitte gib eine Deutsche Übersetzung an!");
+        this.line = line;
     }
 
     public String getLatin ()
@@ -46,5 +56,9 @@ public class Vocabulary
             else germans += ", " + german.get(i);
         }
         return latin + " | " + germans;
+    }
+
+    public String toStringForFile() {
+        return line;
     }
 }

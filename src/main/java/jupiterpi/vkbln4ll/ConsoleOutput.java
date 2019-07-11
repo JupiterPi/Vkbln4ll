@@ -21,6 +21,10 @@ public class ConsoleOutput
         o ("\n--- Vkbln4ll ---\nv0.0 (beta-test)\nCopyright (c) Kaye mGmbH\n");
     }
 
+    public void printImportError() {
+        o("Die Vokabeldatei konnte nicht eingelesen werden. Bitte nutze die Datei Liesmich.txt oder einen der Crash- oder Extended Courses auf unserer Website (kaye.zapto.org) zur Erklärung, nutze eine Vorlage auf der Website oder wende dich an den kostenlosen Support (siehe Website)!");
+    }
+
     public void printVocabularies (List<Vocabulary> vocabularies)
     {
         o ("Test der importierten Vokabeln:");

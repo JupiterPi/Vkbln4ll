@@ -44,7 +44,7 @@ public class VocabulariesReader
             {
                 german.add (ufield);
             }
-            returning.add (new Vocabulary (fields[0], german));
+            returning.add (new Vocabulary (fields[0], german, line));
         }
         return returning;
     }
