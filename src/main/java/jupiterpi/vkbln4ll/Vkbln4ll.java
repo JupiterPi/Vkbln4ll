@@ -19,22 +19,44 @@ public class Vkbln4ll
 
     private static List<Vocabulary> wrongVocabularies = new ArrayList<Vocabulary>();
 
-    public static void main (String[] args) throws Exception
+    public static void main (String[] args) throws Exception {
+        String[] rebootArgs = new String[1];
+        rebootArgs[0] = "wrongVocabularies.txt";
+        if (args.length == 3) {
+            rebootArgs[0] = args[1];
+            rebootArgs[1] = args[1];
+        }
+
+        if (run(args)) {
+            while (true) {
+                if (!(run(rebootArgs))) System.exit(0);
+            }
+        }
+    }
+
+    public static boolean run (String[] args) throws Exception
     {
-        define (args);
+        if (args.length == 0) define("vocabularies.txt");
+        else define(args[0]);
         out.sendHello();
         askVocabularies();
         out.printEndScore (finalScore);
-        printWrongVocabularies(wrongVocabularies, args);
-        askRunAgain();
+        writeWrongVocabularies(wrongVocabularies, args);
+
+        int wrongVocabulariesAmount = wrongVocabularies.size();
+        if (wrongVocabulariesAmount == 0) return false;
+        else return out.askRunAgain(wrongVocabularies.size());
     }
 
-    private static void define (String[] args) throws Exception
+    private static void define (String vocabulariesFileName) throws Exception
     {
         out = new ConsoleOutput ();
-        if (args.length == 0) reader = new VocabulariesReader (".\\vocabularies.txt");
-        else reader = new VocabulariesReader (args[0]);
+        reader = new VocabulariesReader (vocabulariesFileName);
         questioner = new Questioner();
+        finalScore = 0;
+        vocabularies = new ArrayList<Vocabulary>();
+        wrongVocabularies = new ArrayList<Vocabulary>();
+
         List<Vocabulary> importedVocabularies = new ArrayList<Vocabulary>();
         try {
             importedVocabularies = reader.getVocabularies();
@@ -54,6 +76,7 @@ public class Vkbln4ll
 
     private static void askVocabularies ()
     {
+        /* TEST */ System.out.println("Vokabeln: " + vocabularies.toString());
         float score = 0;
         for (Vocabulary vocabulary : vocabularies)
         {
@@ -66,29 +89,19 @@ public class Vkbln4ll
         finalScore = (int) ((score / (float) vocabularies.size()) * 100);
     }
 
-    private static void printWrongVocabularies(List<Vocabulary> wrongVocabularies, String[] args) throws Exception {
+    private static void writeWrongVocabularies(List<Vocabulary> wrongVocabularies, String[] args) throws Exception {
         String wrongVocabulariesFileName;
         if (args.length == 3) wrongVocabulariesFileName = args[2];
         else wrongVocabulariesFileName = "wrongVocabularies.txt";
         FileToolForVkbln4ll wrongVocabulariesFile = new FileToolForVkbln4ll(wrongVocabulariesFileName, true);
-
-        /* TEST */ System.out.println(wrongVocabularies.toString());
 
         int i = 0;
         for (Vocabulary vocabulary : wrongVocabularies) {
             wrongVocabulariesFile.setLine(i,vocabulary.toStringForFile());
             i++;
         }
-        boolean bool = wrongVocabulariesFile.deleteLinesFrom(i);
-
-        /* TEST */ System.out.println(bool);
+        wrongVocabulariesFile.deleteLinesFrom(i);
 
         wrongVocabulariesFile.saveFile();
-    }
-
-    private static void askRunAgain() throws IOException {
-        System.out.println("----------------------");
-        Runtime rt = Runtime.getRuntime();
-        rt.exec(new String[]{"cmd.exe", "echo hallo"});
     }
 }

@@ -85,4 +85,15 @@ public class ConsoleOutput
     {
         o ("Vokabeldatei (" + fileName + ") ist leer. Bitte fülle sie doch!");
     }
+
+    public boolean askRunAgain(int wrongVocabulariesAmount) {
+        o (" ---------- ");
+        print ("Du hast " + wrongVocabulariesAmount + " Vokabeln nicht gewusst. Willst du diese Vokabeln wiederholen? (Y/n): ");
+        String answer = new Scanner (System.in).nextLine();
+        if (answer.equals("Y")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
