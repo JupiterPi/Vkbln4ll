@@ -1,0 +1,1 @@
+Änderung zum Nichtausgeben der Vokabeln am Anfang in der Datei ConsoleOutput.java!

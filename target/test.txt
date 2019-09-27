@@ -1,0 +1,3 @@
+latein1:deutsch11;deutsch12;deutsch13
+latein2:deutsch2
+latein31, latein32, latein33:deutsch31;deutsch32

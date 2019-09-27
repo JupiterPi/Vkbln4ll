@@ -22,4 +22,26 @@ public class Questioner
             return false;
         }
     }
+
+    public boolean askFromLatin(Vocabulary vocabulary) {
+        String input = out.getInputFromLatin(vocabulary);
+        String[] inputSplitted = input.split(", ");
+        List<String> germans = new ArrayList<String>();
+        for (String german : inputSplitted) {
+            germans.add(german);
+        }
+
+        int score = vocabulary.isGerman(germans);
+        if (score >= 50) {
+            if (score == 100) out.printRight();
+            else out.printRight(vocabulary);
+            return true;
+        } else if (score != 0) {
+            out.printImperfect(vocabulary);
+            return (score > 35);
+        } else {
+            out.printWrong(vocabulary);
+            return false;
+        }
+    }
 }

@@ -18,15 +18,24 @@ public class ConsoleOutput
 
     public void sendHello ()
     {
-        o ("\n--- Vkbln4ll ---\nv0.0 (beta-test)\nCopyright (c) Kaye mGmbH\n");
+        o ("\n--- Vkbln4ll ---\nv1.0\nCopyright (c) Kaye mGmbH\n\n ! ------------------------------------------------------- ! \n        -!-  Testversion (gültig bis 31.10.2019)  -!-        \n ! ------------------------------------------------------- ! \n");
     }
 
     public void printImportError() {
         o("Die Vokabeldatei konnte nicht eingelesen werden. Bitte nutze die Datei Liesmich.txt oder einen der Crash- oder Extended Courses auf unserer Website (kaye.zapto.org) zur Erklärung, nutze eine Vorlage auf der Website oder wende dich an den kostenlosen Support (siehe Website)!");
     }
 
+    public String getAskFrom() {
+        print("Wie sollen die Vokabeln abgefragt werden?\nDeutsch | Latein (dl) oder Latein | Deutsch (ld): ");
+        String input = new Scanner(System.in).nextLine();
+        print("\n");
+        return input;
+    }
+
     public void printVocabularies (List<Vocabulary> vocabularies)
     {
+        o("test");
+        /*
         o ("Test der importierten Vokabeln:");
         if (vocabularies.size() == 0) o (" - (keine Vokabeln)");
         o (vocabularies.size() + " Vokabeln vorhanden. ");
@@ -35,6 +44,7 @@ public class ConsoleOutput
             o (" - " + vocabulary.toString());
         }
         o ("Ende der Liste\n");
+        */
     }
 
     public String getInputFromLatin (Vocabulary vocabulary)
@@ -52,6 +62,14 @@ public class ConsoleOutput
     public void printRight ()
     {
         o ("RICHTIG!\n");
+    }
+
+    public void printRight(Vocabulary vocabulary) {
+        o("RICHTIG!\n" + vocabulary.toString() + "\n");
+    }
+
+    public void printImperfect(Vocabulary vocabulary) {
+        o("MANGELHAFT!\n" + vocabulary.toString() + "\n");
     }
 
     public void printWrong (Vocabulary vocabulary)
@@ -78,7 +96,7 @@ public class ConsoleOutput
 
     public void printNewFileCreated ()
     {
-        o ("Neue Vokabeldatei erstellt (vocabularies.txt)!");
+        o ("Neue Vokabeldatei erstellt (vocabularies.vok)!");
     }
 
     public void printEmptyFile (String fileName)

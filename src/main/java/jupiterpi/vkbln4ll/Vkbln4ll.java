@@ -15,13 +15,14 @@ public class Vkbln4ll
     private static Questioner questioner;
 
     private static int finalScore;
+    private static String askFrom;
     private static List<Vocabulary> vocabularies = new ArrayList<Vocabulary>();
 
     private static List<Vocabulary> wrongVocabularies = new ArrayList<Vocabulary>();
 
     public static void main (String[] args) throws Exception {
         String[] rebootArgs = new String[1];
-        rebootArgs[0] = "wrongVocabularies.txt";
+        rebootArgs[0] = "wrongVocabularies.vok";
         if (args.length == 3) {
             rebootArgs[0] = args[1];
             rebootArgs[1] = args[1];
@@ -36,9 +37,10 @@ public class Vkbln4ll
 
     public static boolean run (String[] args) throws Exception
     {
-        if (args.length == 0) define("vocabularies.txt");
+        if (args.length == 0) define("vocabularies.vok");
         else define(args[0]);
         out.sendHello();
+        askFrom = out.getAskFrom();
         askVocabularies();
         out.printEndScore (finalScore);
         writeWrongVocabularies(wrongVocabularies, args);
@@ -76,14 +78,22 @@ public class Vkbln4ll
 
     private static void askVocabularies ()
     {
-        /* TEST */ System.out.println("Vokabeln: " + vocabularies.toString());
+        // /* TEST */ System.out.println("Vokabeln: " + vocabularies.toString());
         float score = 0;
         for (Vocabulary vocabulary : vocabularies)
         {
-            if (questioner.askFromGerman (vocabulary)) {
-                score++;
-            } else {
-                wrongVocabularies.add(vocabulary);
+            if (askFrom.equals("dl")) {
+                if (questioner.askFromGerman(vocabulary)) {
+                    score++;
+                } else {
+                    wrongVocabularies.add(vocabulary);
+                }
+            } else if (askFrom.equals("ld")) {
+                if (questioner.askFromLatin(vocabulary)) {
+                    score++;
+                } else {
+                    wrongVocabularies.add(vocabulary);
+                }
             }
         }
         finalScore = (int) ((score / (float) vocabularies.size()) * 100);
@@ -92,7 +102,7 @@ public class Vkbln4ll
     private static void writeWrongVocabularies(List<Vocabulary> wrongVocabularies, String[] args) throws Exception {
         String wrongVocabulariesFileName;
         if (args.length == 3) wrongVocabulariesFileName = args[2];
-        else wrongVocabulariesFileName = "wrongVocabularies.txt";
+        else wrongVocabulariesFileName = "wrongVocabularies.vok";
         FileToolForVkbln4ll wrongVocabulariesFile = new FileToolForVkbln4ll(wrongVocabulariesFileName, true);
 
         int i = 0;

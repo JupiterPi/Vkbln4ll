@@ -1,0 +1,18 @@
+Information zur Nummerierung der Vokabeldateien/-pakete:
+------------------
+
+Ordnername: (z.B. "03")
+            Nummer der Lektion
+            (hier Lektion 3)
+
+Dateiname:  (z.B. "03.vok")
+            Nummer der Lektion
+            (hier Lektion 3, alle Vokabeln)
+
+            (z.B. "03-2.vok")
+            Nummer der Lektion und Abschnittsnummer
+            (hier Lektion 3, die zweite Hälfte)
+
+Sonderfall: "01bis05.vok" und "06bis10.vok"
+            Zusammenfassende Vokabeldateien
+            (hier z.B. "01bis05.vok": Lektionen 1 bis einschl. 5)

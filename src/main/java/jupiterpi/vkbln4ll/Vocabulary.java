@@ -15,7 +15,7 @@ public class Vocabulary
         if (!(latin.equals (""))) this.latin = latin;
         else throw new Exception ("IMPORTFEHLER: Bitte gib eine lateinische Vokabel an!");
         if (german.size() > 0) this.german = german;
-        else throw new Exception ("IMPORTFEHLER: Bitte gib eine Deutsche Übersetzung an!");
+        else throw new Exception ("IMPORTFEHLER: Bitte gib eine deutsche Übersetzung an!");
     }
 
     public Vocabulary (String latin, List<String> german, String line) throws Exception
@@ -32,9 +32,18 @@ public class Vocabulary
         return latin;
     }
     
-    public List<String> getGerman ()
-    {
+    public List<String> getGerman() {
         return german;
+    }
+
+    public int isGerman(List<String> latins) {
+        int score = 0;
+        for (String germanItem : german) {
+            for (String latin : latins) {
+                if (latin.equals(germanItem)) score++;
+            }
+        }
+        return 100/german.size()*score;
     }
 
     public String getGermanToString ()
